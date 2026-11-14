@@ -24,7 +24,7 @@
     <string name="cc_setup_home">選擇預設桌面</string>
     <string name="cc_setup_revival">待機後自動回來</string>
     <string name="cc_setup_revival_where">通知使用權</string>
-    <string name="cc_setup_scan">或者用電腦一次設好（推薦）</string>
+    <string name="cc_setup_scan">或者用電腦一次設好（建議）</string>
     <string name="cc_setup_scan_hint">手機掃碼，拿到這台電視的命令和給 Agent 的提示詞。</string>
     <string name="cc_back">返回</string>
     <string name="cc_no_inputs">這台電視沒有可用的訊號來源</string>
@@ -59,7 +59,7 @@
     </string-array>
     <string name="menu_hide">從主畫面隱藏</string>
     <string name="menu_info">應用程式資訊</string>
-    <string name="menu_reset_icon">還原預設圖標</string>
+    <string name="menu_reset_icon">還原預設圖示</string>
     <string name="menu_uninstall">解除安裝</string>
     <string name="move_hint">用方向鍵移動 · 按確認鍵完成</string>
     <string name="move_hint_touch">用方向鍵移動，或點一下要放的位置 · 按確認鍵或點這個 App 完成</string>
@@ -69,14 +69,14 @@
     <string name="hidden_empty">沒有隱藏的 App</string>
 
     <string name="launch_failed">無法開啟%1$s</string>
-    <string name="unavailable">此電視不支持</string>
+    <string name="unavailable">此電視不支援</string>
     <string name="cc_brightness">亮度</string>
-    <string name="cc_brightness_in_settings">在影像設定里調</string>
+    <string name="cc_brightness_in_settings">在影像設定中調</string>
     <string name="cc_personalize">個人化</string>
     <string name="wp_title">個人化</string>
     <string name="wp_wallpaper">桌布</string>
     <string name="wp_weather">天氣</string>
-    <string name="wp_weather_none">還沒有天氣資料，聯網後會自動獲取。</string>
+    <string name="wp_weather_none">還沒有天氣資料，聯網後會自動取得。</string>
     <string name="wp_weather_guessed">按網路自動定位。不對的話，用手機掃右邊的二維碼設定城市。</string>
     <string name="wp_weather_chosen">城市在手機上設定，掃右邊的二維碼可以更改。</string>
     <string name="wx_clear">晴</string>
@@ -90,19 +90,19 @@
     <string name="wp_live">動態航拍。在主畫面第一排（雙排時前兩排）一直播放，再往下進入其餘 App 時停在當前畫面並留作桌布，下次從這一幀接著播。</string>
     <string name="wp_photos_rotate">我的相片 · 輪換</string>
     <string name="wp_daily_note">必應每日一圖，每天自動換成當天的。</string>
-    <string name="wp_photos_rotate_note">從你的相片里輪流換一張，預設每天一張，也可以在下面選得更勤。</string>
+    <string name="wp_photos_rotate_note">從你的相片中輪流換一張，預設每天一張，也可以在下面選得更勤。</string>
     <string name="st_photo_every">換相片</string>
     <string name="st_photo_every_day">每天</string>
     <string name="st_photo_every_hint">主畫面多久換成下一張相片。</string>
     <string name="wp_photo_note">你的相片。用手機掃右邊的二維碼可以繼續添加。</string>
-    <string name="wp_auto_note">取所選 App 圖片里的顏色做背景。</string>
+    <string name="wp_auto_note">取所選 App 圖片中的顏色做背景。</string>
     <string name="wp_screensaver">螢幕保護程式</string>
     <string name="ss_follow_hint">還沒選過，跟隨桌布：航拍桌布配航拍，其他桌布配相片，並從這張桌布開始。選一個就固定下來。</string>
     <string name="ss_aerial">航拍</string>
     <string name="ss_photos">相片</string>
     <string name="ss_clock">時鐘</string>
     <string name="wp_phone_title">用手機或電腦設定</string>
-    <string name="wp_phone_body">掃碼，或在電腦瀏覽器開啟下面的地址，可以發相片和影片、更換 App 圖標、設定天氣城市。需要和電視連線同一網路。</string>
+    <string name="wp_phone_body">掃碼，或在電腦瀏覽器開啟下面的地址，可以發相片和影片、更換 App 圖示、設定天氣城市。需要和電視連線同一網路。</string>
     <string name="wp_phone_offline">電視聯網後即可用手機或電腦設定。</string>
     <string name="ss_start">立即開始</string>
     <string name="ss_delay">開始時間</string>
@@ -138,7 +138,7 @@
     <string name="st_clock_hours_system">跟隨電視</string>
     <string name="st_clock_hours_24">24 小時</string>
     <string name="st_clock_hours_12">12 小時</string>
-    <string name="st_clock_hours_hint">跟隨電視：按電視設定里的時間格式，沒有設定時用 24 小時。</string>
+    <string name="st_clock_hours_hint">跟隨電視：按電視設定中的時間格式，沒有設定時用 24 小時。</string>
     <string name="st_names">App 名稱</string>
     <string name="st_names_focused">只顯示選取的</string>
     <string name="st_names_all">全部顯示</string>
@@ -154,7 +154,7 @@
     <string name="st_plate_none">不顯示</string>
     <string name="st_sounds">按鍵聲音</string>
     <string name="st_sounds_hint">移動焦點、確認、返回時發出聲音，像 Apple TV 一樣。</string>
-    <string name="st_sounds_tv_hint">用電視系統自帶的按鍵音，和電視菜單里一樣。電視設定里關了按鍵音時不會響，這時請選「Aerial」。</string>
+    <string name="st_sounds_tv_hint">用電視系統自帶的按鍵音，和電視菜單里一樣。電視設定中關了按鍵音時不會響，這時請選「Aerial」。</string>
     <string name="st_sounds_tv">電視</string>
     <string name="st_sounds_aerial">Aerial</string>
     <string name="st_on">開</string>
@@ -177,7 +177,7 @@
     <string name="st_effects_hint">流暢：面板用純色，選取的 App 不加高光和視差，螢幕保持 60Hz，給會卡頓的電視用。</string>
     <string name="st_effects_auto_lite_hint">這台電視內存較小或系統較舊，「自動」用的是流暢。</string>
     <string name="cc_inputs_settings">訊號來源設定</string>
-    <string name="cc_inputs_list">在列表裡顯示</string>
+    <string name="cc_inputs_list">在清單中顯示</string>
     <string name="cc_inputs_list_hint">電視列出了實際沒有的接口，或者用不到的，可以去掉勾，它們就不再出現在訊號來源列表和主畫面上。</string>
     <string name="cc_inputs_cec">外接裝置開機時切過去</string>
     <string name="cc_inputs_cec_hint">遊戲機、盒子通過 HDMI-CEC 開機（一鍵播放）時，電視切到它所在的訊號來源，和電視原來的桌面一樣。不是每台電視都會通知，Amlogic 芯片的電視（很多小米機型）會。</string>
@@ -208,7 +208,7 @@
     <string name="cc_update_waiting">正在等待系統安裝…</string>
     <string name="cc_update_downloading">正在下載… %d%%</string>
     <string name="cc_update_opened">已開啟安裝程式，按提示確認更新（小米上是「繼續更新」）。裝好後按「完成」，會回到 Aerial，設定都保留。</string>
-    <string name="cc_update_permission">請在剛開啟的設定里允許 Aerial 安裝應用，然後回來再點一次「下載並安裝」。</string>
+    <string name="cc_update_permission">請在剛開啟的設定中允許 Aerial 安裝應用，然後回來再點一次「下載並安裝」。</string>
     <string name="cc_update_storage_permission">這台電視需要存儲權限才能儲存更新。請允許彈出的檔案權限請求，再點一次「下載並安裝」。</string>
     <string name="cc_update_failed_download">下載沒有成功（官網和 GitHub 都試過了）。檢查網路後再試，或者用下面的命令升級。</string>
     <string name="cc_update_failed_blocked">這台電視不讓 App 安裝別的 App，請用下面的命令升級。</string>
@@ -241,7 +241,7 @@
     <string name="weather_temperature">%1$d℃</string>
     <string name="weather_high_low">最高 %1$d℃  最低 %2$d℃</string>
     <string name="st_columns">每列 App</string>
-    <string name="st_columns_hint">主畫面和資料夾里每列放幾個 App。6 個一眼看到更多；4 個圖標更大，離得遠也看得清。</string>
+    <string name="st_columns_hint">主畫面和資料夾里每列放幾個 App。6 個一眼看到更多；4 個圖示更大，離得遠也看得清。</string>
     <string name="st_peek">第二排</string>
     <string name="st_peek_show">露出一點</string>
     <string name="st_peek_hide">不露出</string>

@@ -232,7 +232,7 @@ object SystemProbe {
 
     /**
      * FengOS (Formovie / Xiaomi projectors) keeps its own settings panel, the one its remote and
-     * launcher open for 設置, while android.settings.SETTINGS lands in the AOSP pages left in the
+     * launcher open for 設定, while android.settings.SETTINGS lands in the AOSP pages left in the
      * firmware (Xiaomi Q3 Pro, device peppa, Android 9; issue #1438, the reporter's patch, tried on
      * that projector). Known by the panel being there.
      */
