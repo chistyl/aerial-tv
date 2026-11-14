@@ -111,18 +111,18 @@
     <string name="ss_delay_system">跟隨系統</string>
     <string name="ss_delay_system_off">跟隨系統 · 已關閉</string>
     <string name="ss_delay_system_minutes">跟隨系統 · %d 分鐘</string>
-    <string name="ss_back_hint">提示：在主頁第一行按返回鍵，也可以立即開始屏保。</string>
+    <string name="ss_back_hint">提示：在主頁第一行按返回鍵，也可以立即開始螢幕保護程式。</string>
     <string name="ss_back">返回鍵</string>
-    <string name="ss_back_on">開始屏保</string>
+    <string name="ss_back_on">開始螢幕保護程式</string>
     <string name="ss_back_off">不響應</string>
-    <string name="ss_back_choice_hint">在主頁第一行按返回鍵時做甚麼。容易誤按的話可以關掉，屏保仍會按時自動開始。</string>
+    <string name="ss_back_choice_hint">在主頁第一行按返回鍵時做甚麼。容易誤按的話可以關掉，螢幕保護程式仍會按時自動開始。</string>
     <string name="ss_quality">航拍畫質</string>
-    <string name="ss_quality_hint">「自動」播放這台電視能顯示的最好版本：4K 杜比視界、4K 或 1080p。桌布是航拍時，屏保沿用桌布的畫質接著播，不會黑屏；選了「4K 杜比視界」則屏保切到杜比視界，切換時電視可能黑一下。4K 杜比視界需要約 25 Mbps 的網速，航拍經常跳過時可以選 1080p。</string>
+    <string name="ss_quality_hint">「自動」播放這台電視能顯示的最好版本：4K 杜比視界、4K 或 1080p。桌布是航拍時，螢幕保護程式沿用桌布的畫質接著播，不會黑屏；選了「4K 杜比視界」則螢幕保護程式切到杜比視界，切換時電視可能黑一下。4K 杜比視界需要約 25 Mbps 的網速，航拍經常跳過時可以選 1080p。</string>
     <string name="ss_quality_auto">自動</string>
     <string name="ss_quality_hd">1080p</string>
     <string name="ss_quality_uhd">4K</string>
     <string name="ss_quality_dv">4K 杜比視界</string>
-    <string name="ss_aerial_keeps">航拍會在電視上存最近 %2$d 部（最多佔 %1$s），桌布和屏保輪流放這幾部，每天換一部新的；在屏保里按右鍵換新片，左鍵回到上一部。</string>
+    <string name="ss_aerial_keeps">航拍會在電視上儲存最近 %2$d 部（最多佔 %1$s），桌布和螢幕保護程式輪流放這幾部，每天換一部新的；在螢幕保護程式里按右鍵換新片，左鍵回到上一部。</string>
     <string name="st_focus_style">焦點樣式</string>
     <string name="st_home_layout">主畫面</string>
     <string name="st_layout">佈局</string>
@@ -142,7 +142,7 @@
     <string name="st_names">App 名稱</string>
     <string name="st_names_focused">只顯示選取的</string>
     <string name="st_names_all">全部顯示</string>
-    <string name="st_names_hint">每個 App 下面都顯示名稱，或者像 Apple TV 一樣只顯示選取的。全部顯示時，第一排的名稱也顯示在玻璃底板里。</string>
+    <string name="st_names_hint">每個 App 下面都顯示名稱，或者像 Apple TV 一樣只顯示選取的。全部顯示時，第一排的名稱也顯示在玻璃底板中。</string>
     <string name="ss_kind">類型</string>
     <string name="wp_weather_city">位置</string>
     <string name="st_home_standard">雙排</string>
@@ -257,8 +257,8 @@
     <string name="tile_kids">兒童</string>
     <string name="ss_videos">影片</string>
     <string name="ss_videos_hint">掃碼從手機添加 MP4 或 MOV 影片，離線輪播；沒有可播放的影片時顯示相片。</string>
-    <string name="ss_system">系統內置</string>
-    <string name="ss_system_hint">用電視自帶的屏保（比如小米的那些畫面），Aerial 不再顯示自己的屏保。</string>
+    <string name="ss_system">系統內建</string>
+    <string name="ss_system_hint">用電視自帶的螢幕保護程式（比如小米的那些畫面），Aerial 不再顯示自己的螢幕保護程式。</string>
     <string name="wp_videos_note">你從手機發來的影片，靜音、一個接一個播放。和航拍一樣會動，按鍵時停在當前畫面。</string>
     <string name="wp_videos_rotate">我的影片 · 輪播</string>
     <string name="wp_video_note">你從手機發來的這個影片，靜音、循環播放。和航拍一樣會動，按鍵時停在當前畫面。</string>
@@ -268,11 +268,11 @@
     <string name="st_play_always">一直</string>
     <string name="st_play_hint">靜止時：在第一排（雙排時前兩排）停 10 秒後播放，按鍵停下。一直：按鍵不停，背景壓暗一點；再往下進入其餘 App 時停下。</string>
     <string name="ss_show_time">時間</string>
-    <string name="ss_show_time_hint">航拍和相片屏保上的時間。時間和地名會不時挪一點位置，避免燒屏。</string>
+    <string name="ss_show_time_hint">航拍和相片螢幕保護程式上的時間。時間和地名會不時挪一點位置，避免燒屏。</string>
 
     <!-- Kids and Elders mode (settings/Restricted) -->
     <string name="kids_title">兒童與長輩模式</string>
-    <string name="kids_hint">桌面上只顯示你選的 App，不能整理。退出要輸入家長密碼；進屏保或電視待機後會自動回到這個模式。</string>
+    <string name="kids_hint">桌面上只顯示你選的 App，不能整理。退出要輸入家長密碼；進入螢幕保護程式或電視待機後會自動回到這個模式。</string>
     <string name="kids_kind">給誰用</string>
     <string name="kids_kind_kids">兒童</string>
     <string name="kids_kind_elders">長輩</string>
@@ -294,7 +294,7 @@
     <string name="kids_start_kids">進入兒童模式</string>
     <string name="kids_start_elders">進入長輩模式</string>
     <string name="kids_pick_first">先在右邊選至少一個 App。</string>
-    <string name="kids_loading">App 還在加載。</string>
+    <string name="kids_loading">App 還在載入。</string>
     <string name="kids_turn_off">關閉這個模式</string>
     <string name="kids_apps">顯示的 App · %d 個</string>
     <string name="kids_apps_hint">桌面按選擇的順序顯示。以後新裝的 App 不會自動加進來。</string>
