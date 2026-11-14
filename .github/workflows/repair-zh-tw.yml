@@ -1,5 +1,7 @@
 name: Repair zh-TW wording
 on:
+  push:
+    branches: [fix/zh-tw-complete-weather-r2]
   workflow_dispatch:
 permissions:
   contents: write
