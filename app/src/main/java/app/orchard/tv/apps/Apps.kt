@@ -141,17 +141,17 @@ object AppCatalog {
         // Xiaomi MiTV-MFTR0
         ComponentName("com.xiaomi.mitv.mediaexplorer", "com.xiaomi.mitv.mediaexplorer.NewScraperMainEntryActivity"), // 高清播放器
         ComponentName("com.xiaomi.smarthome.tv", "com.xiaomi.smarthome.tv.ui.MainActivity"), // 米家
-        // 小微畅聊, Tencent's video calls inside Sony's search app; MAIN only, no category
+        // 小微暢聊, Tencent's video calls inside Sony's search app; MAIN only, no category
         // (BRAVIA XR-75X91L, Android 12, issue #1074, found by the reporter).
         ComponentName("com.sony.dtv.searchapp", "com.ktcp.aiagent.xwability.activity.VoipHomeActivity"),
-        // 宽带电视, GITV's live TV; MAIN only, no category, not on PatchWall either
+        // 寬帶電視, GITV's live TV; MAIN only, no category, not on PatchWall either
         // (MiTV4-ANSM0, Android 6.0.1, issue #1378, found by the reporter).
         ComponentName("com.gitv.dvb.live", "com.gitv.dvb.live.activity.PlayActivity"),
     )
 
     /**
      * Names for [UNLISTED_ENTRIES] whose activity has no label of its own, so the host app's name
-     * would show: 小微畅聊 came up as 搜索应用 (issue #1074, the reporter on 1.77). A name set on
+     * would show: 小微暢聊 came up as 搜索應用 (issue #1074, the reporter on 1.77). A name set on
      * the phone page still wins.
      */
     private val UNLISTED_NAMES = mapOf(
@@ -368,7 +368,7 @@ object AppCatalog {
 
     /**
      * The TV's own launcher, which some firmwares declare only as a Home: TCL's com.tcl.cyberui
-     * (雷鸟, MT5879) has no launcher entry at all, and the maker's content (欢网 membership) is
+     * (雷鳥, MT5879) has no launcher entry at all, and the maker's content (歡網 membership) is
      * only there (issues #110, #98). The ones Home Guard keeps away while it runs, else the other
      * Homes that are not fallbacks. Opening the tile goes through HomeGuardService.openStockLauncher,
      * so the guard leaves it in front until Aerial is back. Launchers with an entry of their own
@@ -426,7 +426,7 @@ object AppCatalog {
     /**
      * The app's banner. Banner first: it is the artwork the app designed for a TV. ActivityInfo
      * falls back to the application's banner by itself. A "banner" that is not wide is the app's
-     * square icon declared again (遥遥电视助手 on Xiaomi MiTV-MFTR0); covering the tile with it
+     * square icon declared again (遙遙電視助手 on Xiaomi MiTV-MFTR0); covering the tile with it
      * blows the logo up past the edges.
      */
     private fun banner(pm: PackageManager, info: ActivityInfo, leanback: Boolean): android.graphics.drawable.Drawable? =

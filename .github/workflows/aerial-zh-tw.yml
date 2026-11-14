@@ -1,0 +1,58 @@
+name: Aerial zh-TW build
+
+on:
+  push:
+    branches: [feature/zh-tw-localization, fix/zh-tw-complete-weather-r2]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Validate Traditional Chinese Android resources
+        run: |
+          python3 - <<'PY'
+          import re
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          base = ET.parse('app/src/main/res/values/strings.xml').getroot()
+          tw = ET.parse('app/src/main/res/values-zh-rTW/strings.xml').getroot()
+          def keys(root):
+              return {e.attrib['name']: e for e in root if e.tag in ('string', 'string-array', 'plurals')}
+          a, b = keys(base), keys(tw)
+          missing = sorted(set(a) - set(b))
+          extra = sorted(set(b) - set(a))
+          def fmt(el):
+              return sorted(re.findall(r'%(?:[0-9]+\\$)?[sdif]', ''.join(el.itertext())))
+          bad = [(k, fmt(a[k]), fmt(b[k])) for k in a.keys() & b.keys() if fmt(a[k]) != fmt(b[k])]
+          if missing or extra or bad:
+              print('Missing:', missing)
+              print('Extra:', extra)
+              print('Format mismatches:', bad)
+              raise SystemExit(1)
+          print(f'zh-TW resources OK: {len(b)} keys; format placeholders match.')
+          PY
+      - name: Build standard and guard release APKs
+        run: ./gradlew --no-daemon assembleStandardRelease assembleGuardRelease
+      - name: Upload APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: aerial-zh-tw-release-apks
+          path: |
+            app/build/outputs/apk/standard/release/*.apk
+            app/build/outputs/apk/guard/release/*.apk
+          if-no-files-found: error

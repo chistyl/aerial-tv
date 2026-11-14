@@ -39,11 +39,11 @@ object Lunar {
         0x644ab0, 0x4e55b0, 0x36ad66, 0x5eb6a0, 0x4a7520, 0x337254, 0x58b250, 0x42a8b0, 0x2b49b2, 0x524ab0,
     )
 
-    private val MONTHS = arrayOf("正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬", "腊")
+    private val MONTHS = arrayOf("正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬", "臘")
     private val TENS = arrayOf("初", "十", "廿", "三")
     private val UNITS = arrayOf("一", "二", "三", "四", "五", "六", "七", "八", "九", "十")
 
-    /** [date] in the Chinese calendar, as "九月初五" or "闰六月十二"; null outside 1901-2100. */
+    /** [date] in the Chinese calendar, as "九月初五" or "閏六月十二"; null outside 1901-2100. */
     fun text(date: LocalDate): String? {
         val (month, day, leap) = of(date) ?: return null
         val days = when (day) {
@@ -52,7 +52,7 @@ object Lunar {
             30 -> "三十"
             else -> TENS[day / 10] + UNITS[day % 10 - 1]
         }
-        return (if (leap) "闰" else "") + MONTHS[month - 1] + "月" + days
+        return (if (leap) "閏" else "") + MONTHS[month - 1] + "月" + days
     }
 
     /** The month (1-12), day and whether the month is a leap one; null outside the table. */

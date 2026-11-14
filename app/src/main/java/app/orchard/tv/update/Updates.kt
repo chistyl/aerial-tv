@@ -275,7 +275,7 @@ object Updates {
      * From Android 13 the installer's ACTION_VIEW records the APK as a local file (packageSource 3),
      * and Android then restricts the app's settings (ACCESS_RESTRICTED_SETTINGS deny; seen on the
      * Android 13 TV emulator). On TCL T966D5 (Android 14) Home Guard was off after every update made
-     * this way, and stayed on after one pushed by 多屏互动 (issue #723). A session that says where
+     * this way, and stayed on after one pushed by 多屏互動 (issue #723). A session that says where
      * the APK came from is not restricted; the system still asks the owner to confirm. Where the
      * firmware turns the session down, the installer's ACTION_VIEW as before (UpdateResult).
      *

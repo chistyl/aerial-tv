@@ -104,8 +104,33 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
+
+    /**
+     * Chinese-language TVs often report zh-CN even when the owner expects Traditional Chinese.
+     * Use Taiwan resources for every Chinese system locale; keep non-Chinese system languages
+     * unchanged. This makes values-zh-rTW the actual UI locale instead of silently falling back
+     * to the Simplified values-zh folder.
+     */
+    override fun attachBaseContext(newBase: Context) {
+        val configuration = Configuration(newBase.resources.configuration)
+        @Suppress("DEPRECATION")
+        val systemLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            configuration.locales[0]
+        } else {
+            configuration.locale
+        }
+        if (systemLocale?.language == "zh" && !systemLocale.country.equals("TW", ignoreCase = true)) {
+            val taiwan = Locale("zh", "TW")
+            Locale.setDefault(taiwan)
+            configuration.setLocale(taiwan)
+            super.attachBaseContext(newBase.createConfigurationContext(configuration))
+        } else {
+            super.attachBaseContext(newBase)
+        }
+    }
 
     private val vm by viewModels<HomeViewModel>()
 
@@ -1123,8 +1148,8 @@ class MainActivity : ComponentActivity() {
                 window.decorView, it.left.toInt(), it.top.toInt(), it.width.toInt(), it.height.toInt(),
             ).toBundle().apply {
                 // The options name Aerial's package, and on TCL 65C6 (MStar m7221, Android 8) the
-                // app opened with them ran as Aerial's: 云视听极光 failed its settings read for a
-                // package not its own and 凤凰秀's packer refused to load; both opened from adb
+                // app opened with them ran as Aerial's: 雲視聽極光 failed its settings read for a
+                // package not its own and 鳳凰秀's packer refused to load; both opened from adb
                 // (issue #590). A scale-up needs no package; not yet tried on that TV.
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) remove("android:activity.packageName")
             }
