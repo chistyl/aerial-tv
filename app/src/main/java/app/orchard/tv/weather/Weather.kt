@@ -68,14 +68,15 @@ object Weather {
         prefs = app.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         place = prefs.getString("place", null)
         chosen = prefs.getBoolean("chosen", false)
-        if (System.currentTimeMillis() - prefs.getLong("fetched_at", 0) < STALE_MS) {
-            val kind = runCatching { WeatherKind.valueOf(prefs.getString("kind", null) ?: "") }.getOrNull()
-            if (kind != null) now = WeatherNow(
-                prefs.getInt("celsius", 0), kind, prefs.getBoolean("day", true),
-                high = prefs.getInt("high", NONE).takeIf { it != NONE },
-                low = prefs.getInt("low", NONE).takeIf { it != NONE },
-            )
-        }
+        // Keep the last successful reading visible while a fresh request is made. Hiding
+        // weather after three hours made the entire weather line disappear on TVs that were
+        // offline overnight or whose network could not reach Open-Meteo at startup.
+        val kind = runCatching { WeatherKind.valueOf(prefs.getString("kind", null) ?: "") }.getOrNull()
+        if (kind != null) now = WeatherNow(
+            prefs.getInt("celsius", 0), kind, prefs.getBoolean("day", true),
+            high = prefs.getInt("high", NONE).takeIf { it != NONE },
+            low = prefs.getInt("low", NONE).takeIf { it != NONE },
+        )
     }
 
     private var failed = false
