@@ -1123,8 +1123,8 @@ class MainActivity : ComponentActivity() {
                 window.decorView, it.left.toInt(), it.top.toInt(), it.width.toInt(), it.height.toInt(),
             ).toBundle().apply {
                 // The options name Aerial's package, and on TCL 65C6 (MStar m7221, Android 8) the
-                // app opened with them ran as Aerial's: 云视听极光 failed its settings read for a
-                // package not its own and 凤凰秀's packer refused to load; both opened from adb
+                // app opened with them ran as Aerial's: 雲視聽極光 failed its settings read for a
+                // package not its own and 鳳凰秀's packer refused to load; both opened from adb
                 // (issue #590). A scale-up needs no package; not yet tried on that TV.
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) remove("android:activity.packageName")
             }

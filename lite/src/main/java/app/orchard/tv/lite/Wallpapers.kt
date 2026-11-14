@@ -123,7 +123,7 @@ object Wallpapers {
         val builtins = Gradients.presets.map { Wallpaper("grad:${it.key}", WallpaperKind.Builtin, if (zh) it.nameZh else it.nameEn) }
         val photos = (photoDir.listFiles { f -> f.name.endsWith(".jpg") } ?: emptyArray())
             .sortedByDescending { it.lastModified() }
-            .map { Wallpaper("photo:${it.name.removeSuffix(".jpg")}", WallpaperKind.Photo, if (zh) "我的照片" else "My Photo") }
+            .map { Wallpaper("photo:${it.name.removeSuffix(".jpg")}", WallpaperKind.Photo, if (zh) "我的相片" else "My Photo") }
         items = daily + builtins + photos
     }
 

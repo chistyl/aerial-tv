@@ -19,7 +19,7 @@ import java.io.File
  * (Updates.installBySession). The same version again is an ordinary replace: settings, wallpaper,
  * photos and the permissions ADB granted stay.
  *
- * Installed from a USB stick, an app store, TCL 多屏互动 or a phone's ADB tool, and on the update
+ * Installed from a USB stick, an app store, TCL 多屏互動 or a phone's ADB tool, and on the update
  * from 1.71 to 1.72, Aerial runs uncompiled (odex about 48 KB, against about 8 MB compiled on
  * Xiaomi MiTV-MFTR0 and TCL MT5879), its main thread about twice as slow, until the next update from
  * Control Center (docs/PERF-2026-10-30.md).
@@ -65,7 +65,7 @@ object SelfCompile {
 
     /**
      * This install's time: the package manager is asked once per install, not per version, as an
-     * install of the same version again (TCL 多屏互动 takes one) is uncompiled again.
+     * install of the same version again (TCL 多屏互動 takes one) is uncompiled again.
      */
     private fun installedAt(context: Context): Long =
         runCatching { context.packageManager.getPackageInfo(context.packageName, 0).lastUpdateTime }.getOrDefault(0L)
@@ -100,7 +100,7 @@ object SelfCompile {
     /**
      * Compiled since [init] looked, by ADB's `cmd package compile` or the system's dexopt while
      * the TV idles: the row goes. The process stays, so it was still offered on TCL MT5879
-     * (Android 11) after a 多屏互动 install compiled with ADB just after Aerial started.
+     * (Android 11) after a 多屏互動 install compiled with ADB just after Aerial started.
      * Only the file's length: cheap enough for the main thread.
      */
     fun recheck(context: Context) {

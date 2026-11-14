@@ -139,7 +139,7 @@ object SystemProbe {
         if (showUi || (fromKey && isInstalled(context, "com.tcl.settings"))) AudioManager.FLAG_SHOW_UI else 0
 
     /**
-     * TCL tcl_m7642 (雷鸟 65S515D, Android 9) has adjustStreamVolume note the change in battery stats,
+     * TCL tcl_m7642 (雷鳥 65S515D, Android 9) has adjustStreamVolume note the change in battery stats,
      * which needs a system permission: it threw and Control Center crashed at the first step (issue
      * #15). Setting the level is the way left there.
      */
@@ -232,7 +232,7 @@ object SystemProbe {
 
     /**
      * FengOS (Formovie / Xiaomi projectors) keeps its own settings panel, the one its remote and
-     * launcher open for 设置, while android.settings.SETTINGS lands in the AOSP pages left in the
+     * launcher open for 設置, while android.settings.SETTINGS lands in the AOSP pages left in the
      * firmware (Xiaomi Q3 Pro, device peppa, Android 9; issue #1438, the reporter's patch, tried on
      * that projector). Known by the panel being there.
      */
@@ -310,7 +310,7 @@ object SystemProbe {
     /**
      * Whether [intent] resolves to an activity Aerial may start: exported, and any permission it
      * asks for held. Haier's settings (com.haier.tv.menusetting/.RootActivity) resolve on the
-     * Huanglong-based 统帅 L65F8 (Android 12) but ask for com.huanglong.permission.COMMON_PERMISSION,
+     * Huanglong-based 統帥 L65F8 (Android 12) but ask for com.huanglong.permission.COMMON_PERMISSION,
      * signature|privileged, so the start threw and Control Center said the TV had no settings,
      * though candidates after it were there (issue #1388, the reporter's dexdump and adb).
      */
@@ -786,7 +786,7 @@ object SystemProbe {
     /**
      * The TV's own player for USB drives, offered as one more input: owners switch the TV on to
      * watch what is on a drive, and look for it with the HDMI ports. Xiaomi's 高清播放器 (verified on
-     * MiTV-MFTR0) and TCL's 媒体中心 (MT5879) both list the drives plugged in on their first page.
+     * MiTV-MFTR0) and TCL's 媒體中心 (MT5879) both list the drives plugged in on their first page.
      */
     private fun usbSource(context: Context): TvSource? {
         val player = USB_PLAYERS.firstOrNull { runCatching { context.packageManager.getActivityInfo(it, 0) }.isSuccess } ?: return null
@@ -886,7 +886,7 @@ object SystemProbe {
 
     /**
      * Two tuners under one name, told apart by their services: Sony BRAVIA 4K AE2 (Android 14) has
-     * a DVB tuner and MediaTek's analog one, both labelled 电视, and listed two the same (issue #433).
+     * a DVB tuner and MediaTek's analog one, both labelled 電視, and listed two the same (issue #433).
      */
     private fun tunersApart(context: Context, sources: List<TvSource>): List<TvSource> {
         val shared = sources.filter { it.kind == SourceKind.Tuner }.groupBy { it.label }.filterValues { it.size > 1 }.keys
@@ -1070,7 +1070,7 @@ object SystemProbe {
     private const val WHALEY_PLAYER = "com.whaley.tv.tvplayer.ui"
 
     /**
-     * Whaley (微鲸 WTV55K1J, MStar, Android 5.0) registers no inputs either. Its player switches when
+     * Whaley (微鯨 WTV55K1J, MStar, Android 5.0) registers no inputs either. Its player switches when
      * started with the input's ordinal, which the reporter of issue #292 found port by port: HDMI 1–3
      * are 4–6 and AV is 7 (0–3 are the tuners, which that TV has no hardware for). Not tried here.
      */
@@ -1150,7 +1150,7 @@ object SystemProbe {
         }.getOrDefault(emptyList())
     }
 
-    /** VOD is Skyworth's name for the tuner source its TV activity opens as 电视. */
+    /** VOD is Skyworth's name for the tuner source its TV activity opens as 電視. */
     private fun skyworthKind(name: String): SourceKind = when {
         name.startsWith("HDMI") -> SourceKind.Hdmi
         name == "DP" -> SourceKind.DisplayPort

@@ -191,7 +191,7 @@ object Weather {
     }
 
     /**
-     * A place chosen before 1.29 came from Open-Meteo's geocoder, which took 安庆 for a village in
+     * A place chosen before 1.29 came from Open-Meteo's geocoder, which took 安慶 for a village in
      * Jiangsu. If a listed city of that name is not where the chosen point is, the city is meant.
      * Checked once.
      */
@@ -224,8 +224,8 @@ object Weather {
                         .optJSONArray("results")
                     val all = (0 until (results?.length() ?: 0)).map { results!!.getJSONObject(it) }
                     // The most populous of the name, a seat before a village where neither says: GeoNames
-                    // codes some cities as plain places, so "jinzhou" took 晋州, a county seat in Hebei
-                    // (PPLA3, no population), over 锦州 in Liaoning (PPL, 1.5 million; issue #1367).
+                    // codes some cities as plain places, so "jinzhou" took 晉州, a county seat in Hebei
+                    // (PPLA3, no population), over 錦州 in Liaoning (PPL, 1.5 million; issue #1367).
                     fun seat(it: JSONObject) = it.optString("feature_code").let { c -> c.startsWith("PPLA") || c == "PPLC" }
                     val best = all.maxWithOrNull(compareBy<JSONObject>({ it.optLong("population") }, { seat(it) }, { -all.indexOf(it) }))
                     best?.let { Triple(it.getDouble("latitude"), it.getDouble("longitude"), it.optString("name").ifBlank { name.trim() }) }

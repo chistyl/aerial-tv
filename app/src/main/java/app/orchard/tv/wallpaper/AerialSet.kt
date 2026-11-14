@@ -7,7 +7,7 @@ import java.time.LocalDate
 /**
  * The few aerial films Aerial plays, kept on disk (AerialStream), shared by the aerial wallpaper and
  * every screensaver of aerials in every format, so going from one to the other is the same film
- * (owner, 2026-10-29: "从杜比的屏保到航拍壁纸切换的时候，最好是同一个视频").
+ * (owner, 2026-10-29: "從杜比的屏保到航拍壁紙切換的時候，最好是同一個影片").
  *
  * - [MAX] films, newest first. Both play them in this order, one after another, round and round;
  *   where each one is and how far in is Wallpapers.liveSpot, written by whichever plays.

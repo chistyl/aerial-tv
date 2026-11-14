@@ -70,7 +70,7 @@ object TileFactory {
      * A banner that is a picture keeps its own pixels (up to twice the tile), cut to 16:9 only, so
      * the tile resamples it once on its way to the screen. Drawn at W×H first, a 320×180 banner was
      * resampled three times (320 → 352 → tile → focus scale) and read soft beside launchers that
-     * show it directly (issue #307, 奇异果 on Xiaomi MiTV-MFTR0).
+     * show it directly (issue #307, 奇異果 on Xiaomi MiTV-MFTR0).
      */
     fun fromBanner(banner: Drawable): Bitmap {
         val src = (banner as? BitmapDrawable)?.bitmap
@@ -249,7 +249,7 @@ object TileFactory {
         val depth = (h * 0.06f).roundToInt()
         val top = band(t + edge, t + edge + depth) ?: return null
         val bottom = band(bt - edge - depth, bt - edge) ?: return null
-        // Two colors (Xiaomi's 视频头条: white over red) are a picture, not a plate to carry across.
+        // Two colors (Xiaomi's 影片頭條: white over red) are a picture, not a plate to carry across.
         if (distance(top, bottom) > 150) return null
 
         // The logo: whatever on the plate stands out from the plate's color at that height.
@@ -284,12 +284,12 @@ object TileFactory {
      * logo layer; in white if asked.
      *
      * Inside the logo a pixel is kept by how far it is from the plate color, so a faint part
-     * (当贝's "DANGBEI.COM") stays faint and a shaded one (a light-blue fold in a white logo)
+     * (當貝's "DANGBEI.COM") stays faint and a shaded one (a light-blue fold in a white logo)
      * stays whole. On the logo's edge, next to the plate, a pixel is the logo and the plate mixed:
      * there its distance against the logo's nearby distance says how much of it is logo, which
      * keeps the icon's own antialiasing. (Edges used to go through the same fixed ramp as the
      * inside, 24 to 96 in color distance: a logo far from its plate, white on red at 517 (#640:
-     * 网易云音乐), had every edge pixel past a fifth logo fully opaque, and curves came out
+     * 網易雲音樂), had every edge pixel past a fifth logo fully opaque, and curves came out
      * stepped.)
      */
     private fun cutOut(layer: Bitmap, logo: RectF, top: Int, bottom: Int, white: Boolean) {
@@ -352,7 +352,7 @@ object TileFactory {
         val tint = dominant(iconBitmap)
         iconBitmap.recycle()
         val (top, bottom) = if (recipe?.top != null && recipe.bottom != null) recipe.top to recipe.bottom else tileFromTint(tint)
-        // A white logo on a picture (Z视介's Z on blue facets): a recipe can ask for just the logo,
+        // A white logo on a picture (Z視介's Z on blue facets): a recipe can ask for just the logo,
         // taken by its lightness, on the recipe's colors.
         if (recipe?.white == true && (square || edgeColors(icon) != null)) {
             placeLogo(icon, ::lightPart)?.let { (fore, _) ->
@@ -374,7 +374,7 @@ object TileFactory {
         // A square icon is a picture with its logo somewhere inside: sized up so the logo reads
         // as large as the others. When its edges are one color each, those colors are carried
         // across the tile and the picture fades into them, so it fills the tile instead of sitting
-        // on it (HiFi音乐, 华数TV, 开唛K歌 from 当贝市场). A recipe's colors win.
+        // on it (HiFi音樂, 華數TV, 開嘜K歌 from 當貝市場). A recipe's colors win.
         if (recipe?.top == null) edgeColors(icon)?.let { (edgeTop, edgeBottom) ->
             placeLogo(icon, ::visible, scale = 1.25f)?.let { (fore, at) ->
                 val side = at.width()
@@ -395,7 +395,7 @@ object TileFactory {
      * For an icon that is a filled (rounded) square, the colors along its top and bottom edges,
      * just inside them and away from the corners. Null for any other shape, when either edge is
      * not mostly one color (a photo running off the edge), or when the two are far apart (black
-     * over orange, 华数南瓜电影), which fades into the tile as a stripe. A gradient (pink into
+     * over orange, 華數南瓜電影), which fades into the tile as a stripe. A gradient (pink into
      * purple) is fine.
      */
     private fun edgeColors(icon: Drawable): Pair<Int, Int>? {
@@ -609,7 +609,7 @@ object TileFactory {
      * [iconOnTile], and where that logo ended up on the tile. Null when [find] finds none.
      *
      * The icon is drawn at the size it will have, so it stays sharp, then measured again: a
-     * layer-list of dp-sized shapes does not scale with its bounds (遥遥电视助手 on Xiaomi
+     * layer-list of dp-sized shapes does not scale with its bounds (遙遙電視助手 on Xiaomi
      * MiTV-MFTR0), and is placed by what was actually drawn.
      */
     private fun placeLogo(d: Drawable, find: (IntArray, Int) -> RectF?, round: Boolean = false, scale: Float = 1f): Pair<Bitmap, RectF>? {

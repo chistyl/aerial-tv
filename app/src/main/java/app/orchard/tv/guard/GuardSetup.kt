@@ -352,7 +352,7 @@ object GuardSetup {
     /**
      * ADB switched off with the TV in use: the viewer did it, or a settings page does it on its
      * way to switching it on again. keep_adb putting it back at once fought both: on TCL 98Q10M
-     * Pro (MT9655, Android 14, issue #1399) the hidden ADB page then failed every time ("获取失败"),
+     * Pro (MT9655, Android 14, issue #1399) the hidden ADB page then failed every time ("獲取失敗"),
      * and the setting could not be switched off without the ADB it kept from working. So the
      * switch-off is taken as meant and keep_adb ends. Not in standby, nor in the first minutes
      * of a boot or a wake, where firmware switches it off on its own (keep_adb's reason to be).
