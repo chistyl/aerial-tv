@@ -104,8 +104,33 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
+
+    /**
+     * Chinese-language TVs often report zh-CN even when the owner expects Traditional Chinese.
+     * Use Taiwan resources for every Chinese system locale; keep non-Chinese system languages
+     * unchanged. This makes values-zh-rTW the actual UI locale instead of silently falling back
+     * to the Simplified values-zh folder.
+     */
+    override fun attachBaseContext(newBase: Context) {
+        val configuration = Configuration(newBase.resources.configuration)
+        @Suppress("DEPRECATION")
+        val systemLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            configuration.locales[0]
+        } else {
+            configuration.locale
+        }
+        if (systemLocale?.language == "zh" && !systemLocale.country.equals("TW", ignoreCase = true)) {
+            val taiwan = Locale("zh", "TW")
+            Locale.setDefault(taiwan)
+            configuration.setLocale(taiwan)
+            super.attachBaseContext(newBase.createConfigurationContext(configuration))
+        } else {
+            super.attachBaseContext(newBase)
+        }
+    }
 
     private val vm by viewModels<HomeViewModel>()
 
