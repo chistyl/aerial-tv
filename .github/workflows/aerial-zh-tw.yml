@@ -2,7 +2,7 @@ name: Aerial zh-TW build
 
 on:
   push:
-    branches: [feature/zh-tw-localization]
+    branches: [feature/zh-tw-localization, fix/zh-tw-complete-weather-r2]
   pull_request:
     branches: [main]
   workflow_dispatch:
