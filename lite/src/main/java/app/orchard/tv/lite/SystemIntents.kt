@@ -182,14 +182,14 @@ object SystemIntents {
     }
 
     /**
-     * Letv's own network page — 无线网络 / 有线网络 — shown as its remote's network key shows it
+     * Letv's own network page — 無線網路 / 有線網路 — shown as its remote's network key shows it
      * (S40 Air, Android 4.3, verified). False where the TV has no such panel, which is where
      * [network] is the answer.
      */
     fun openNetworkPanel(context: Context): Boolean = letvPanel(context, "com.letv.action.network")
 
     /**
-     * Letv's input list — 模拟电视 / 数字电视 / 视频 / HDMI1 — shown as its remote's source key
+     * Letv's input list — 模擬電視 / 數字電視 / 影片 / HDMI1 — shown as its remote's source key
      * shows it (S40 Air, Android 4.3, verified). [openInputPicker] tries it too; a caller that
      * closes its own panel on success asks first, so it knows which panel it must not close.
      */

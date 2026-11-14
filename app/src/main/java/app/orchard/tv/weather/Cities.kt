@@ -7,7 +7,7 @@ import kotlin.math.sqrt
 /**
  * China's cities and counties by their Chinese names (assets/cities-cn.tsv, from GeoNames via
  * tools/make-cities.py). Open-Meteo's geocoder knows few Chinese names: 商丘 and 泉州 found nothing,
- * and 安庆 found a village in Jiangsu instead of the city in Anhui (issue #187).
+ * and 安慶 found a village in Jiangsu instead of the city in Anhui (issue #187).
  */
 object Cities {
     class City(val name: String, val aliases: List<String>, val province: String, val lat: Double, val lon: Double, val rank: Int, val ascii: String)
@@ -25,16 +25,16 @@ object Cities {
     }
 
     /**
-     * The place typed on the phone page: "商丘", "商丘市", or with its province, "河南商丘" or "北京朝阳"
+     * The place typed on the phone page: "商丘", "商丘市", or with its province, "河南商丘" or "北京朝陽"
      * for one of several of that name. Of several, a city before a county; the table is in that order.
      */
     fun find(context: Context, typed: String): City? {
-        val q = typed.filterNot { it.isWhitespace() }.removePrefix("中国")
+        val q = typed.filterNot { it.isWhitespace() }.removePrefix("中國")
         if (q.isEmpty() || q.any { it.code < 0x4e00 || it.code > 0x9fff }) return null
         val cities = load(context)
         fun inProvince(city: City) = city.province.isNotEmpty() && q.startsWith(city.province)
-        fun rest(city: City) = short(q.removePrefix(city.province).trimStart('省', '市').removePrefix("自治区").removePrefix("壮族自治区"))
-        // Names before aliases: some places have another place's name as an alias (北京朝阳 is one of 朝外's).
+        fun rest(city: City) = short(q.removePrefix(city.province).trimStart('省', '市').removePrefix("自治區").removePrefix("壯族自治區"))
+        // Names before aliases: some places have another place's name as an alias (北京朝陽 is one of 朝外's).
         return cities.firstOrNull { it.name == short(q) }
             ?: cities.firstOrNull { inProvince(it) && it.name == rest(it) }
             ?: cities.firstOrNull { short(q) in it.aliases }
@@ -60,7 +60,7 @@ object Cities {
             ?.first
 
     /** Same suffixes tools/make-cities.py takes off. */
-    private val suffix = Regex("(壮族自治区|回族自治区|维吾尔自治区|特别行政区|自治区|自治州|自治县|地区|新区|省|市|县|区|盟|旗)$")
+    private val suffix = Regex("(壯族自治區|回族自治區|維吾爾自治區|特別行政區|自治區|自治州|自治縣|地區|新區|省|市|縣|區|盟|旗)$")
 
     private fun short(name: String): String = suffix.replace(name, "").takeIf { it.length >= 2 } ?: name
 

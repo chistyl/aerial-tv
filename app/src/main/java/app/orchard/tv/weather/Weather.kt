@@ -68,14 +68,15 @@ object Weather {
         prefs = app.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         place = prefs.getString("place", null)
         chosen = prefs.getBoolean("chosen", false)
-        if (System.currentTimeMillis() - prefs.getLong("fetched_at", 0) < STALE_MS) {
-            val kind = runCatching { WeatherKind.valueOf(prefs.getString("kind", null) ?: "") }.getOrNull()
-            if (kind != null) now = WeatherNow(
-                prefs.getInt("celsius", 0), kind, prefs.getBoolean("day", true),
-                high = prefs.getInt("high", NONE).takeIf { it != NONE },
-                low = prefs.getInt("low", NONE).takeIf { it != NONE },
-            )
-        }
+        // Keep the last successful reading visible while a fresh request is made. Hiding
+        // weather after three hours made the entire weather line disappear on TVs that were
+        // offline overnight or whose network could not reach Open-Meteo at startup.
+        val kind = runCatching { WeatherKind.valueOf(prefs.getString("kind", null) ?: "") }.getOrNull()
+        if (kind != null) now = WeatherNow(
+            prefs.getInt("celsius", 0), kind, prefs.getBoolean("day", true),
+            high = prefs.getInt("high", NONE).takeIf { it != NONE },
+            low = prefs.getInt("low", NONE).takeIf { it != NONE },
+        )
     }
 
     private var failed = false
@@ -190,7 +191,7 @@ object Weather {
     }
 
     /**
-     * A place chosen before 1.29 came from Open-Meteo's geocoder, which took 安庆 for a village in
+     * A place chosen before 1.29 came from Open-Meteo's geocoder, which took 安慶 for a village in
      * Jiangsu. If a listed city of that name is not where the chosen point is, the city is meant.
      * Checked once.
      */
@@ -223,8 +224,8 @@ object Weather {
                         .optJSONArray("results")
                     val all = (0 until (results?.length() ?: 0)).map { results!!.getJSONObject(it) }
                     // The most populous of the name, a seat before a village where neither says: GeoNames
-                    // codes some cities as plain places, so "jinzhou" took 晋州, a county seat in Hebei
-                    // (PPLA3, no population), over 锦州 in Liaoning (PPL, 1.5 million; issue #1367).
+                    // codes some cities as plain places, so "jinzhou" took 晉州, a county seat in Hebei
+                    // (PPLA3, no population), over 錦州 in Liaoning (PPL, 1.5 million; issue #1367).
                     fun seat(it: JSONObject) = it.optString("feature_code").let { c -> c.startsWith("PPLA") || c == "PPLC" }
                     val best = all.maxWithOrNull(compareBy<JSONObject>({ it.optLong("population") }, { seat(it) }, { -all.indexOf(it) }))
                     best?.let { Triple(it.getDouble("latitude"), it.getDouble("longitude"), it.optString("name").ifBlank { name.trim() }) }
