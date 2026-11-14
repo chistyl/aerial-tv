@@ -13,6 +13,16 @@ FILES += list((ROOT / "lite/src/main/java").rglob("*.kt"))
 
 # Convert Simplified Chinese characters to Traditional using ICU, then prefer Taiwan terms.
 TERMS = [
+    # Taiwan wording missed by character-level Simplified→Traditional conversion.
+    ("壁紙", "桌布"), ("壁纸", "桌布"),
+    ("個性化", "個人化"), ("个性化", "個人化"),
+    ("個性化里", "個人化中"), ("個性化裡", "個人化中"),
+    ("屏保", "螢幕保護程式"),
+    ("內置", "內建"), ("内置", "內建"),
+    ("保存", "儲存"), ("加載", "載入"), ("加载", "載入"),
+    ("發送", "傳送"), ("发送", "傳送"),
+    ("賬號", "帳號"), ("账号", "帳號"),
+    ("反饋", "意見回饋"), ("反馈", "意見回饋"),
     ("文件夾", "資料夾"), ("文件夹", "資料夾"),
     ("文件", "檔案"), ("軟件", "軟體"), ("软件", "軟體"),
     ("網絡", "網路"), ("网络", "網路"),
