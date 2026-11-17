@@ -10,21 +10,21 @@ import android.content.Context
  * Android 8 and later), but the row should behave the same wherever it is shown.
  *
  * The class sits on the boot class path and answers any app: no permission, root or system
- * signature. setCustomBacklight takes the same 0..10 level as the TV's own 图像 → 亮度 slider and
+ * signature. setCustomBacklight takes the same 0..10 level as the TV's own 圖像 → 亮度 slider and
  * getCustomBacklight reads it back, while screen_brightness changes on these sets without moving
  * the light source at all (VIDAA 75E8H, issue #1025; measured on a Vidda M2 Pro 高亮版, model VL5R-PRO, 2026-11-01).
  *
  * Only laser sets are taken over: `getLaserOverLapOrCL0Mode` belongs to the laser light path
  * (CL0 is the laser source), so a set without it keeps its existing behaviour.
  *
- * Lite has no row of picture modes, so it cannot say why a slider stopped; a step in 超新 or 超频
- * still drops the set into 自定义 at the level asked for.
+ * Lite has no row of picture modes, so it cannot say why a slider stopped; a step in 超新 or 超頻
+ * still drops the set into 自定義 at the level asked for.
  */
 object HisenseLaserPanel {
-    /** The TV's own 0..10 brightness, the same scale as its 图像 → 亮度 slider. */
+    /** The TV's own 0..10 brightness, the same scale as its 圖像 → 亮度 slider. */
     const val LEVEL_MAX = 10
 
-    /** 自定义: the only picture backlight mode whose level the owner controls. */
+    /** 自定義: the only picture backlight mode whose level the owner controls. */
     private const val BACKLIGHT_MODE_CUSTOM = 0
 
     private val tvManager by lazy { runCatching { Class.forName("com.jamdeo.tv.TvManager") }.getOrNull() }

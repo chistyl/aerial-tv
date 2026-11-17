@@ -7,7 +7,7 @@ import android.content.Context
  *
  * The class sits on the boot class path and answers any app — no permission, root or system
  * signature needed. `setCustomBacklight` takes the same 0..10 level as the TV's own
- * 图像 → 亮度 slider and `getCustomBacklight` reads it back, while `Settings.System.
+ * 圖像 → 亮度 slider and `getCustomBacklight` reads it back, while `Settings.System.
  * screen_brightness` changes on these sets without moving the light source at all: 216 → 30 left
  * the picture exactly as it was (measured with a local probe app). Issue #1025 reports the same
  * symptom on a VIDAA 75E8H, where Control Center opens the picture settings instead of a slider
@@ -20,18 +20,18 @@ import android.content.Context
  * every Hisense reports.
  *
  * The scale is the TV's own 11 notches, not percent: a step moves one notch, where the other TVs
- * step 5%. A picture mode other than 自定义 pins a level of its own and drops writes to the custom
- * one, so a write chooses 自定义 first — which is what the TV itself does when the owner drags its
- * brightness slider, and why the row switches to 自定义 as the picture changes.
+ * step 5%. A picture mode other than 自定義 pins a level of its own and drops writes to the custom
+ * one, so a write chooses 自定義 first — which is what the TV itself does when the owner drags its
+ * brightness slider, and why the row switches to 自定義 as the picture changes.
  *
  * Measured on a Vidda M2 Pro 高亮版 (VL5R-PRO; VIDAA_TV, MT9653, Android 11, Aerial 1.76), 2026-11-01;
  * see `docs/devices/hisense-vidaa.md`.
  */
 internal object HisenseLaserPanel {
-    /** The TV's own 0..10 brightness, the same scale as its 图像 → 亮度 slider. */
+    /** The TV's own 0..10 brightness, the same scale as its 圖像 → 亮度 slider. */
     const val LEVEL_MAX = 10
 
-    /** 自定义: the only picture backlight mode whose level the owner controls. */
+    /** 自定義: the only picture backlight mode whose level the owner controls. */
     private const val BACKLIGHT_MODE_CUSTOM = 0
 
     private val tvManager by lazy { runCatching { Class.forName("com.jamdeo.tv.TvManager") }.getOrNull() }

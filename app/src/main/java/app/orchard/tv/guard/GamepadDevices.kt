@@ -19,7 +19,7 @@ internal object GamepadDevices {
     // The Bluetooth voice remote paired to Redmi Projector Lite (Projector_10, Android 9) declares
     // SOURCE_GAMEPAD. Counting it as a gamepad made the guard stop filtering keys outside Aerial;
     // the firmware's normal Home dispatch then force-stopped Aerial and cold-started it.
-    private const val REDMI_PROJECTOR_REMOTE_NAME = "小米蓝牙语音遥控器"
+    private const val REDMI_PROJECTOR_REMOTE_NAME = "小米藍牙語音遙控器"
     private const val XIAOMI_VENDOR_ID = 0x2717
     private const val REDMI_PROJECTOR_REMOTE_PRODUCT_ID = 0x32b8
 
