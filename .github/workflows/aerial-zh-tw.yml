@@ -34,7 +34,7 @@ jobs:
           def keys(root):
               return {e.attrib['name']: e for e in root if e.tag in ('string', 'string-array', 'plurals')}
           a, b = keys(base), keys(tw)
-          missing = sorted(set(a) - set(b))
+          # This key was intentionally removed with the control-center update notice.\n          intentionally_removed = {'cc_update_available'}\n          missing = sorted((set(a) - set(b)) - intentionally_removed)
           extra = sorted(set(b) - set(a))
           def fmt(el):
               return sorted(re.findall(r'%(?:[0-9]+\\$)?[sdif]', ''.join(el.itertext())))
