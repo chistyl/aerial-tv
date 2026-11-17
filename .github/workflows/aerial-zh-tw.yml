@@ -2,7 +2,7 @@ name: Aerial zh-TW build
 
 on:
   push:
-    branches: [feature/zh-tw-localization, fix/zh-tw-complete-weather-r2, fix/zh-tw-wallpaper-strings-r3]
+    branches: [feature/zh-tw-localization, fix/zh-tw-complete-weather-r2, fix/zh-tw-wallpaper-strings-r3, fix/zh-tw-screensaver-aerial-terms-r4]
   pull_request:
     branches: [main]
   workflow_dispatch:
