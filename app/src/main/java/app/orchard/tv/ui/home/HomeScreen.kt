@@ -900,7 +900,6 @@ fun HomeScreen(
                 now = now,
                 network = vm.network,
                 showTime = if (dragged) pastShelf else inGrid,
-                showInputSource = vm.sources.any { it.connected },
                 enabled = gridEnabled && moving == null,
                 focusRequester = pillRequester,
                 modifier = Modifier
