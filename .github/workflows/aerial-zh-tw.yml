@@ -2,9 +2,9 @@ name: Aerial zh-TW build
 
 on:
   push:
-    branches: [feature/zh-tw-localization, fix/zh-tw-complete-weather-r2, fix/zh-tw-wallpaper-strings-r3, fix/zh-tw-screensaver-aerial-terms-r4]
+    branches: [feature/zh-tw-localization, fix/zh-tw-complete-weather-r2, fix/zh-tw-wallpaper-strings-r3, fix/zh-tw-screensaver-aerial-terms-r4, fix/remove-input-source-field-r6]
   pull_request:
-    branches: [main]
+    branches: [main, fix/hide-input-source-until-detected-r5]
   workflow_dispatch:
 
 permissions:
