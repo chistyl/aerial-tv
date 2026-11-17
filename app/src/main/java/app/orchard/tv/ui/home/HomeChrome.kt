@@ -827,6 +827,8 @@ fun StatusPill(
     now: LocalDateTime,
     network: NetworkStatus,
     showTime: Boolean,
+    /** Show the input-source shortcut only while a TV input reports an active signal. */
+    showInputSource: Boolean,
     enabled: Boolean,
     focusRequester: FocusRequester,
     onFocused: (Boolean) -> Unit,
@@ -865,7 +867,7 @@ fun StatusPill(
             if (showTime) {
                 BasicText(timeText(now), style = Type.Headline.copy(color = fg))
             }
-            GlyphIcon(Glyph.Switches, fg, 17.dp)
+            if (showInputSource) GlyphIcon(Glyph.Switches, fg, 17.dp)
         }
     }
 }
