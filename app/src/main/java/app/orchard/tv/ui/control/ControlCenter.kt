@@ -391,14 +391,6 @@ private fun MainPage(
                 trailing = "$name ›",
             )
         }
-        Updates.available?.let { latest ->
-            MenuRow(
-                Glyph.Info,
-                stringResource(R.string.cc_update_available, latest),
-                onClick = { vm.overlay = Overlay.ControlCenter(CcPage.Update) },
-            )
-        }
-
         // Android 9 to 11, Aerial running uncompiled: reinstalling itself has the system compile it,
         // which needs the owner's confirmation there (SelfCompile; 12+ does it by itself).
         LaunchedEffect(Unit) { SelfCompile.recheck(context) }
