@@ -10,6 +10,7 @@ on:
       - fix/discover-main-activities-r6
       - fix/hide-vpn-status-r7
       - fix/hide-control-center-vpn-r8
+      - fix/hide-control-center-input-source-r9
   pull_request:
     branches:
       - main

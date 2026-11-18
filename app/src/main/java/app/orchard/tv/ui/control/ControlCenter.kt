@@ -277,13 +277,11 @@ private fun MainPage(
     val showsVolume = remember { OutputDevice.showsVolume(context) }
     val showsBrightness = remember { OutputDevice.showsBrightness() }
     PollBrightness(vm, laser, poll)
-    val first = remember { FocusRequester() }
     val networkFocus = remember { FocusRequester() }
     val settingsFocus = remember { FocusRequester() }
-    // The buttons share one row above a panel-wide slider, so focus searching up from it has three
-    // equally near choices and takes the middle one, Network, whichever button Down came from
-    // (75A7D). Remember that button and send Up back to it.
-    var cameFrom by remember { mutableStateOf(first) }
+    // The two remaining buttons share one row above a panel-wide slider. Remember which one
+    // focus came from so Up from the slider returns to that button.
+    var cameFrom by remember { mutableStateOf(networkFocus) }
     // Firmwares that list their inputs late (see HomeViewModel.refreshSources): look again while
     // the page is open and still empty. One provider or TvInputManager query every 3 s.
     LaunchedEffect(Unit) {
@@ -295,7 +293,7 @@ private fun MainPage(
     LaunchedEffect(Unit) {
         if (!takeFocus) return@LaunchedEffect
         withFrameNanos { }
-        runCatching { first.requestFocus() }
+        runCatching { networkFocus.requestFocus() }
     }
 
     Column {
@@ -324,15 +322,6 @@ private fun MainPage(
 
         Spacer(Modifier.height(12.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            RoundButton(
-                Glyph.Input, stringResource(R.string.cc_inputs),
-                focusRequester = first,
-                modifier = Modifier.onFocusChanged { if (it.isFocused) cameFrom = first },
-            ) {
-                // TCL lists no inputs to Android; its own input panel is the next best thing.
-                vm.overlay = if (vm.sources.isEmpty() && SystemProbe.openInputPicker(context)) Overlay.None
-                else Overlay.ControlCenter(CcPage.Inputs)
-            }
             RoundButton(
                 when (vm.network.kind) { NetKind.Ethernet -> Glyph.Ethernet; NetKind.Offline -> Glyph.Offline; else -> Glyph.Wifi },
                 stringResource(R.string.cc_network),
