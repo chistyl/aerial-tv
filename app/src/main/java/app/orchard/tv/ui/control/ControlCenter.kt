@@ -211,7 +211,7 @@ fun ControlCenter(
                             }
                             CcPage.Inputs -> InputsPage(vm, visible, onOpen)
                             CcPage.InputSettings -> InputSettingsPage(vm, visible)
-                            CcPage.Update -> UpdatePage(vm, visible)
+                            CcPage.Update -> vm.overlay = Overlay.ControlCenter(CcPage.Main)
                             CcPage.Setup -> SetupPage(vm, visible, onOpen)
                         }
                     }

@@ -89,7 +89,7 @@ object Updates {
         started = true
         appContext = context.applicationContext
         prefs = context.applicationContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        available = prefs.getString("latest", null)?.takeIf { newer(it, current) }
+        available = null
         checker = UpdateCheck(
             scope = scope,
             lastSuccess = { prefs.getLong("checked_at", 0) },
@@ -101,7 +101,7 @@ object Updates {
             },
             log = { Log.i(TAG, it); DiagLog.i("update check: $it") },
         )
-        loadNotes()
+        // Update checks and update notices are disabled in this build.
         // A download left from an install that has since finished or been given up.
         scope.launch(Dispatchers.IO) {
             apkFile(context).takeIf { System.currentTimeMillis() - it.lastModified() > 60 * 60 * 1000L }?.delete()
@@ -113,17 +113,13 @@ object Updates {
      * Center asks with a shorter [maxAgeMs]: that is where the viewer looks for a new version, and a
      * release out an hour ago was not shown there for hours more (issue #301).
      */
+    /** Automatic update checks are intentionally disabled; Aerial stays on the installed version. */
     fun checkIfStale(
         force: Boolean = false,
         maxAgeMs: Long = UpdateCheck.MAX_AGE_MS,
         networkCameUp: Boolean = false,
     ) {
-        checker?.check(force, maxAgeMs, networkCameUp, when {
-            force -> "forced"
-            networkCameUp -> "network"
-            maxAgeMs == CONTROL_CENTER_MAX_AGE_MS -> "control center"
-            else -> "home"
-        })
+        available = null
     }
 
     fun diagnostics(): String = if (!started) "not initialized" else
