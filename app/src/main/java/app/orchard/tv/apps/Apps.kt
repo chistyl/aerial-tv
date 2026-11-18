@@ -273,8 +273,7 @@ object AppCatalog {
         // getLaunchIntentForPackage as a per-package fallback. This still excludes packages
         // without an exported, enabled launchable Activity.
         runCatching { pm.getInstalledApplications(0) }.getOrDefault(emptyList()).forEach { app ->
-            if (app.packageName in found || app.packageName == context.packageName ||
-                !app.enabled || !app.applicationInfo.enabled) return@forEach
+            if (app.packageName in found || app.packageName == context.packageName || !app.enabled) return@forEach
             val launch = runCatching { pm.getLaunchIntentForPackage(app.packageName) }.getOrNull()
                 ?: return@forEach
             val info = runCatching { pm.resolveActivity(launch, 0)?.activityInfo }.getOrNull()
