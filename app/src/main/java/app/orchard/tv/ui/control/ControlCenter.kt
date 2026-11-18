@@ -285,18 +285,23 @@ private fun MainPage(
     // equally near choices and takes the middle one, Network, whichever button Down came from
     // (75A7D). Remember that button and send Up back to it.
     var cameFrom by remember { mutableStateOf(first) }
-    // Firmwares that list their inputs late (see HomeViewModel.refreshSources): look again while
-    // the page is open and still empty. One provider or TvInputManager query every 3 s.
-    LaunchedEffect(Unit) {
-        while (vm.sources.isEmpty()) {
+    // Re-read input state while Control Center is visible. TvInputManager can report that
+    // an HDMI/DP input is connected even when its port was listed before the device was plugged in.
+    LaunchedEffect(poll) {
+        while (poll) {
             vm.refreshSources()
             delay(3000)
         }
     }
-    LaunchedEffect(Unit) {
+    val hasConnectedVideoSource = vm.sources.any {
+        it.connected && (it.kind == SourceKind.Hdmi || it.kind == SourceKind.DisplayPort)
+    }
+    LaunchedEffect(takeFocus, hasConnectedVideoSource) {
         if (!takeFocus) return@LaunchedEffect
         withFrameNanos { }
-        runCatching { first.requestFocus() }
+        runCatching {
+            if (hasConnectedVideoSource) first.requestFocus() else networkFocus.requestFocus()
+        }
     }
 
     Column {
@@ -326,14 +331,16 @@ private fun MainPage(
 
         Spacer(Modifier.height(12.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            RoundButton(
-                Glyph.Input, stringResource(R.string.cc_inputs),
-                focusRequester = first,
-                modifier = Modifier.onFocusChanged { if (it.isFocused) cameFrom = first },
-            ) {
-                // TCL lists no inputs to Android; its own input panel is the next best thing.
-                vm.overlay = if (vm.sources.isEmpty() && SystemProbe.openInputPicker(context)) Overlay.None
-                else Overlay.ControlCenter(CcPage.Inputs)
+            if (hasConnectedVideoSource) {
+                RoundButton(
+                    Glyph.Input, stringResource(R.string.cc_inputs),
+                    focusRequester = first,
+                    modifier = Modifier.onFocusChanged { if (it.isFocused) cameFrom = first },
+                ) {
+                    // TCL lists no inputs to Android; its own input panel is the next best thing.
+                    vm.overlay = if (vm.sources.isEmpty() && SystemProbe.openInputPicker(context)) Overlay.None
+                    else Overlay.ControlCenter(CcPage.Inputs)
+                }
             }
             RoundButton(
                 when (vm.network.kind) { NetKind.Ethernet -> Glyph.Ethernet; NetKind.Offline -> Glyph.Offline; else -> Glyph.Wifi },
@@ -391,14 +398,6 @@ private fun MainPage(
                 trailing = "$name ›",
             )
         }
-        Updates.available?.let { latest ->
-            MenuRow(
-                Glyph.Info,
-                stringResource(R.string.cc_update_available, latest),
-                onClick = { vm.overlay = Overlay.ControlCenter(CcPage.Update) },
-            )
-        }
-
         // Android 9 to 11, Aerial running uncompiled: reinstalling itself has the system compile it,
         // which needs the owner's confirmation there (SelfCompile; 12+ does it by itself).
         LaunchedEffect(Unit) { SelfCompile.recheck(context) }
@@ -411,18 +410,7 @@ private fun MainPage(
             MenuRow(Glyph.Shield, stringResource(R.string.cc_setup_title), onClick = { vm.overlay = Overlay.ControlCenter(CcPage.Setup) }, trailing = "›")
         }
 
-        Spacer(Modifier.height(8.dp))
-        val (dot, text) = when (vm.homeStatus) {
-            HomeStatus.Default -> Palette.Green to stringResource(R.string.cc_home_default)
-            HomeStatus.Guarded -> Palette.Green to stringResource(R.string.cc_home_guarded)
-            HomeStatus.NotDefault -> Palette.Orange to stringResource(R.string.cc_home_not_default)
-        }
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 14.dp)) {
-            Box(Modifier.size(7.dp).clip(CircleShape).background(dot))
-            Spacer(Modifier.width(8.dp))
-            BasicText(text, style = Type.Caption, modifier = Modifier.weight(1f))
-            BasicText("Aerial ${Updates.current}", style = Type.Caption.copy(color = Palette.TertiaryLabel), modifier = Modifier.padding(end = 14.dp))
-        }
+
     }
 }
 

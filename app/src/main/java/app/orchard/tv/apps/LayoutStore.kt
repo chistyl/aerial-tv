@@ -209,11 +209,11 @@ class LayoutStore(context: Context) {
 /** First-run arrangement: streaming apps first, the TV's own utilities last. */
 private object Defaults {
     private val preferred = listOf(
-        "com.ktcp.video",                  // 云视听极光
-        "com.gitvdemo.video",              // 银河奇异果
+        "com.ktcp.video",                  // 雲視聽極光
+        "com.gitvdemo.video",              // 銀河奇異果
         "com.cibn.tv",                     // CIBN 酷喵
         "com.hunantv.license",             // 芒果 TV
-        "com.xiaodianshi.tv.yst",          // 云视听小电视
+        "com.xiaodianshi.tv.yst",          // 雲視聽小電視
         "com.netflix.ninja",
         "com.google.android.youtube.tv",
         "com.apple.atve.androidtv.appletv",

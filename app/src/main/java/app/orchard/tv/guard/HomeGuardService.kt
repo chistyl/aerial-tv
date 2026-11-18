@@ -54,7 +54,7 @@ import app.orchard.tv.system.SystemProbe
  *
  * Keys are filtered only up to Android 11 (see updateKeyFilter). With the filter on, every key
  * press on the TV detours through this service; some apps then see a press as held and move twice
- * (云视听小电视 on Xiaomi MiTV-MFTR0, reported by a user and gone once Aerial was uninstalled).
+ * (雲視聽小電視 on Xiaomi MiTV-MFTR0, reported by a user and gone once Aerial was uninstalled).
  *
  * Where the stock launcher raises no accessibility event at all (Xiaomi's PatchWall up to Android
  * 6, Hisense VIDAA's 聚好看), the app in front is also read from usage stats once a second (see
@@ -72,7 +72,7 @@ class HomeGuardService : AccessibilityService() {
     /**
      * Fallback Home activities (negative priority, kept out of stockHomes): the setup wizard's and
      * Settings' FallbackHome, which show only for a moment at boot. One seen last says nothing about
-     * what is in front now: on Tencent 极光 BA101 (Android 14) the guard last saw
+     * what is in front now: on Tencent 極光 BA101 (Android 14) the guard last saw
      * com.android.provision at boot, and the launcher after it raised no window change, so both
      * boot rechecks left the launcher in front (issue #701, the reporter's 1.61 log).
      */
@@ -408,7 +408,7 @@ class HomeGuardService : AccessibilityService() {
      * the first that filters keys, first among the services not marked default, then among those
      * that are; a key that service lets go goes back to the system, not to the next one. Read from
      * the services.jar of Mi TV 4 (MiTV4 pulpfiction, Android 6.0.1, firmware 9.1.8.2318), where
-     * Xiaomi's voice microphone service (小米语言麦克风, com.xiaomi.mitv.karaoke.service) filters
+     * Xiaomi's voice microphone service (小米語言麥克風, com.xiaomi.mitv.karaoke.service) filters
      * keys too: marked default, the guard never got a key and Home went to PatchWall (issue #81).
      * Not marked, it got every key there in 8 boots: started with the others, its process connects
      * last and so is bound last.
@@ -696,14 +696,14 @@ class HomeGuardService : AccessibilityService() {
      * starts, 45-65 ms after the key. From then usage stats are read until they have PatchWall's
      * home screen just come to the front, and Aerial then starts over it, as Home in Aerial is
      * answered on onPause. They lag: PatchWall was there 116-279 ms after the key on MiTV-MFFU1,
-     * and 199-434 ms with 云视听小电视 in front on MiTV-MFTR0 (Android 14), which draws PatchWall
+     * and 199-434 ms with 雲視聽小電視 in front on MiTV-MFTR0 (Android 14), which draws PatchWall
      * later. Another app moving to the front ends the look, as a switch within an app does.
      *
      * Not with accessibility's window changes as a second signal: asking for them holds the
      * window change of PatchWall back until the window list has caught up, and on MiTV-MFTR0 the
      * fallback below came at 336 ms instead of 177-277 ms, after PatchWall was on the screen. Not
      * by the last window seen either: an app brought back to its task sends none (issue #475), so
-     * the guard still had Aerial in front after 云视听极光 was opened again from it. Boot and wake
+     * the guard still had Aerial in front after 雲視聽極光 was opened again from it. Boot and wake
      * keep their own handling of PatchWall, as does the stock launcher's tile.
      */
     private fun uiBoostChanged() {
@@ -926,7 +926,7 @@ class HomeGuardService : AccessibilityService() {
         // Hisense VIDAA's own launcher (聚好看, com.jamdeo.tv.vod) raises no window change to
         // third-party services on any version seen, while other apps' events arrive; usage stats
         // record its moves to the front as on PatchWall (Vidda C1S, MT9669, Android 9, PR #545,
-        // checked by the author with a local build). Tencent's 极光 launcher (com.ktcp.launcher) on
+        // checked by the author with a local build). Tencent's 極光 launcher (com.ktcp.launcher) on
         // the Aurora box 4 Pro (A4111, Amlogic SC2, Android 11) is the same: it comes to the front
         // at boot, during standby and on Home with no window change (issue #928, the reporter's
         // logs), while usage stats record it. Only where one of these launchers is a stock home,
@@ -1066,7 +1066,7 @@ class HomeGuardService : AccessibilityService() {
             )
 
     /**
-     * A preinstalled app the firmware starts by itself after a boot, over Aerial: 蓝光影院 on Haier
+     * A preinstalled app the firmware starts by itself after a boot, over Aerial: 藍光影院 on Haier
      * HRA920L (YunOS 5.1, Android 5.1) about a minute in; it declares no boot receiver and cannot be
      * disabled (issue #1301, the reporter's agent). Only in the boot window and before any key:
      * opened from Aerial's tile, a key comes first (filtered everywhere up to Android 11).
@@ -1268,7 +1268,7 @@ class HomeGuardService : AccessibilityService() {
         // repeating keys were in the stock launcher, and in other apps Home goes as above.
         // In front means resumed, not the last window change: an app brought back to its task
         // sends none the guard takes for an activity, and keys stayed filtered in it, two or three
-        // places a press again (云视听极光 on MiTV-MFTR0, Android 14; issue #475).
+        // places a press again (雲視聽極光 on MiTV-MFTR0, Android 14; issue #475).
         // Not on Xiaomi, which answers Home in Aerial another way: see backOnPause.
         val aerialInFront = aerialResumed && !backOnPause
         // Asked for by this TV's profile (issue #684): on with the screen, Aerial in front or not.
@@ -2482,8 +2482,8 @@ class HomeGuardService : AccessibilityService() {
 
         private val HOME_SCREENS_BEHIND_TRAMPOLINES = mapOf(
             "com.stv.deskplatform" to listOf("com.stv.deskplatform.ui.activity.Launcher"),
-            // Tencent 极光 boxes: Home is LauncherMainActivity, the screen shown is this one
-            // (极光盒子 6SE Q0102, Android 10, issue #270; 7S, Android 14, #269).
+            // Tencent 極光 boxes: Home is LauncherMainActivity, the screen shown is this one
+            // (極光盒子 6SE Q0102, Android 10, issue #270; 7S, Android 14, #269).
             "com.ktcp.launcher" to listOf("com.ktcp.launcher.activity.LauncherHomeSingleTaskActivity"),
             // Dangbei launcher preinstalled by Skyworth: Tianci's Home starts cos.launcher.Mac, the
             // screen shown is this one (7S72_G25, m7221, Android 8, issue #1297, the reporter's log).
@@ -2526,7 +2526,7 @@ class HomeGuardService : AccessibilityService() {
             // away, so Home stayed there and its usage stats were not watched (issue #700). Not
             // seen on a TV here; named so it counts wherever the activity exists.
             "com.jamdeo.tv.vod" to listOf("com.ju.main.launcher.LauncherActivity"),
-            // Xiaomi's office mode (办公模式) home on Mi TV 4 (MiTV4-ANSM0, Android 6.0.1): with it
+            // Xiaomi's office mode (辦公模式) home on Mi TV 4 (MiTV4-ANSM0, Android 6.0.1): with it
             // on, Aerial stopped from the task list never came back, as the guard did not count
             // it (issue #861, the reporter's mResumedActivity). The elderly mode's home is
             // PatchWall's MainActivityUserMode, which already counts.
