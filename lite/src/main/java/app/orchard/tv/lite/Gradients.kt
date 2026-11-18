@@ -40,7 +40,7 @@ object Gradients {
                 0xFF7D3F63 to 0xFF8A4762, 0xFF552D5A to 0xFF5B2F55, 0xFF33204A to 0xFF2C1C40, 0xFF170F2A to 0xFF120B20,
             ))
         },
-        GradientPreset("hills_mist", "山丘 · 晨雾", "Hills, Mist") { w, h ->
+        GradientPreset("hills_mist", "山丘 · 晨霧", "Hills, Mist") { w, h ->
             hills(w, h, sky(0xFFA9C9D8, 0xFFDBE8E3, 0xFFF3EFE2), 0.3f, 0.55f, 0xFFFFFAEB, 0.7f, listOf(
                 0xFFA8C2BB to 0xFFB9D0C6, 0xFF7EA79F to 0xFF8FB3A7, 0xFF4F8178 to 0xFF5D8B7D, 0xFF2A5249 to 0xFF24463D,
             ))
@@ -66,7 +66,7 @@ object Gradients {
         GradientPreset("sea_clear", "海 · 晴空", "Sea, Clear Sky") { w, h ->
             sea(w, h, sky(0xFF2F6FD6, 0xFF78AEE8, 0xFFD9ECF7), 0xFFFFFFFF, 0.55f, sky(0xFF2D7FC2, 0xFF155A9A, 0xFF0A3566), 0xFFFFFFFA, 0xFFFFFFFF)
         },
-        GradientPreset("waves_blue", "波浪 · 深蓝", "Waves, Blue") { w, h ->
+        GradientPreset("waves_blue", "波浪 · 深藍", "Waves, Blue") { w, h ->
             waves(w, h, 0xFF0A1A4A to 0xFF123A8A, listOf(
                 0xFF1F5FD0 to 0xFF0D2F7A, 0xFF2E86E8 to 0xFF1446A8, 0xFF3FB2F0 to 0xFF1A64C4, 0xFF7FD3FF to 0xFF2B85DC,
             ))
@@ -76,22 +76,22 @@ object Gradients {
                 0xFFC23A6B to 0xFF7A1F4A, 0xFFEC5F6A to 0xFFB0334F, 0xFFFF8A5C to 0xFFD9534A, 0xFFFFC078 to 0xFFF08A52,
             ))
         },
-        GradientPreset("waves_violet", "波浪 · 紫罗兰", "Waves, Violet") { w, h ->
+        GradientPreset("waves_violet", "波浪 · 紫羅蘭", "Waves, Violet") { w, h ->
             waves(w, h, 0xFF120A3A to 0xFF2A1670, listOf(
                 0xFF5B3FD0 to 0xFF2C1A85, 0xFF8A5CF0 to 0xFF4F30B8, 0xFFC27BF5 to 0xFF7B45D8, 0xFFF2A6E8 to 0xFFB56AD8,
             ))
         },
-        GradientPreset("glow_pink", "光晕 · 柔粉", "Glow, Pink") { w, h ->
+        GradientPreset("glow_pink", "光暈 · 柔粉", "Glow, Pink") { w, h ->
             glows(w, h, 0xFFF6D6E0, listOf(
                 Blob(0.2f, 0.3f, 0.35f, 0xFFFFB3C7), Blob(0.75f, 0.25f, 0.3f, 0xFFC9B6FF), Blob(0.55f, 0.85f, 0.4f, 0xFFFFD2A8), Blob(0.9f, 0.8f, 0.25f, 0xFFA8D8FF),
             ))
         },
-        GradientPreset("aurora", "光晕 · 极光", "Glow, Aurora") { w, h ->
+        GradientPreset("aurora", "光暈 · 極光", "Glow, Aurora") { w, h ->
             glows(w, h, 0xFF071029, listOf(
                 Blob(0.2f, 0.35f, 0.3f, 0xFF18C79B), Blob(0.65f, 0.2f, 0.35f, 0xFF5B3FD9), Blob(0.5f, 0.9f, 0.4f, 0xFF0E6FFF), Blob(0.95f, 0.6f, 0.2f, 0xFFC14BD8),
             ))
         },
-        GradientPreset("glow_lime", "光晕 · 青柠", "Glow, Lime") { w, h ->
+        GradientPreset("glow_lime", "光暈 · 青檸", "Glow, Lime") { w, h ->
             glows(w, h, 0xFFE3F4EA, listOf(
                 Blob(0.25f, 0.3f, 0.3f, 0xFF9EE6B8), Blob(0.75f, 0.3f, 0.3f, 0xFFBFE9FF), Blob(0.5f, 0.85f, 0.4f, 0xFFF2F0A0), Blob(0.05f, 0.85f, 0.25f, 0xFF7FD6C8),
             ))
