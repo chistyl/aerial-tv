@@ -575,7 +575,11 @@ class HomeViewModel(app: Application) : AndroidViewModel(app) {
         viewModelScope.launch {
             val ctx = context
             val s = withContext(Dispatchers.Default) { SystemProbe.sources(ctx) }
-            if (s.isNotEmpty() && sources.isEmpty()) { sources = s; arrange() }
+            if (s.isNotEmpty()) {
+                val layoutChanged = s.map { it.id } != sources.map { it.id }
+                sources = s
+                if (layoutChanged) arrange()
+            }
         }
     }
 
