@@ -266,6 +266,25 @@ object AppCatalog {
             .forEach { found.putIfAbsent(it.activityInfo.packageName, it.activityInfo to false) }
         pm.queryIntentActivities(Intent(Intent.ACTION_MAIN).addCategory(CATEGORY_APPSTORE_LAUNCHER), 0)
             .forEach { found.putIfAbsent(it.activityInfo.packageName, it.activityInfo to false) }
+
+        // Some sideloaded APKs and Play apps expose a launchable entry through the package's
+        // launch intent but are omitted by category-wide queries on certain TV firmwares.
+        // Keep the category queries above as the preferred source (Leanback wins), then use
+        // getLaunchIntentForPackage as a per-package fallback. This still excludes packages
+        // without an exported, enabled launchable Activity.
+        runCatching { pm.getInstalledApplications(0) }.getOrDefault(emptyList()).forEach { app ->
+            if (app.packageName in found || app.packageName == context.packageName ||
+                !app.enabled || !app.applicationInfo.enabled) return@forEach
+            val launch = runCatching { pm.getLaunchIntentForPackage(app.packageName) }.getOrNull()
+                ?: return@forEach
+            val info = runCatching { pm.resolveActivity(launch, 0)?.activityInfo }.getOrNull()
+                ?: return@forEach
+            if (info.packageName == app.packageName && info.exported && info.isEnabled &&
+                info.applicationInfo.enabled) {
+                found.putIfAbsent(info.packageName, info to false)
+            }
+        }
+
         for (component in UNLISTED_ENTRIES) {
             val info = runCatching { pm.getActivityInfo(component, 0) }.getOrNull() ?: continue
             if (info.exported && info.isEnabled && info.applicationInfo.enabled) found.putIfAbsent(info.packageName, info to false)
