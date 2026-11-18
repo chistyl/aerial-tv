@@ -266,6 +266,17 @@ object AppCatalog {
             .forEach { found.putIfAbsent(it.activityInfo.packageName, it.activityInfo to false) }
         pm.queryIntentActivities(Intent(Intent.ACTION_MAIN).addCategory(CATEGORY_APPSTORE_LAUNCHER), 0)
             .forEach { found.putIfAbsent(it.activityInfo.packageName, it.activityInfo to false) }
+
+        // Some installed apps expose a launchable MAIN activity but omit both launcher categories.
+        // Query MAIN without a category as a fallback, adding only packages not found by the standard
+        // TV/phone launchers above. This avoids duplicate tiles and keeps the normal TV entry preferred.
+        pm.queryIntentActivities(Intent(Intent.ACTION_MAIN), 0)
+            .forEach { result ->
+                val info = result.activityInfo
+                if (info.exported && info.isEnabled && info.applicationInfo.enabled) {
+                    found.putIfAbsent(info.packageName, info to false)
+                }
+            }
         for (component in UNLISTED_ENTRIES) {
             val info = runCatching { pm.getActivityInfo(component, 0) }.getOrNull() ?: continue
             if (info.exported && info.isEnabled && info.applicationInfo.enabled) found.putIfAbsent(info.packageName, info to false)
