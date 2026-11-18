@@ -235,7 +235,7 @@ private fun KidsPage(vm: HomeViewModel, now: LocalDateTime, takeFocus: Boolean) 
     LaunchedEffect(Unit) {
         if (!takeFocus) return@LaunchedEffect
         withFrameNanos { }
-        runCatching { networkFocus.requestFocus() }
+        runCatching { first.requestFocus() }
     }
     Column {
         BasicText(timeText(now), style = Type.SmallClock.copy(fontSize = Type.LargeTitle.fontSize * 1.05f))
@@ -293,7 +293,7 @@ private fun MainPage(
     LaunchedEffect(Unit) {
         if (!takeFocus) return@LaunchedEffect
         withFrameNanos { }
-        runCatching { first.requestFocus() }
+        runCatching { networkFocus.requestFocus() }
     }
 
     Column {
