@@ -403,18 +403,7 @@ private fun MainPage(
             MenuRow(Glyph.Shield, stringResource(R.string.cc_setup_title), onClick = { vm.overlay = Overlay.ControlCenter(CcPage.Setup) }, trailing = "›")
         }
 
-        Spacer(Modifier.height(8.dp))
-        val (dot, text) = when (vm.homeStatus) {
-            HomeStatus.Default -> Palette.Green to stringResource(R.string.cc_home_default)
-            HomeStatus.Guarded -> Palette.Green to stringResource(R.string.cc_home_guarded)
-            HomeStatus.NotDefault -> Palette.Orange to stringResource(R.string.cc_home_not_default)
-        }
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 14.dp)) {
-            Box(Modifier.size(7.dp).clip(CircleShape).background(dot))
-            Spacer(Modifier.width(8.dp))
-            BasicText(text, style = Type.Caption, modifier = Modifier.weight(1f))
-            BasicText("Aerial ${Updates.current}", style = Type.Caption.copy(color = Palette.TertiaryLabel), modifier = Modifier.padding(end = 14.dp))
-        }
+
     }
 }
 
