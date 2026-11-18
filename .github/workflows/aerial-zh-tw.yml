@@ -2,9 +2,16 @@ name: Aerial zh-TW build
 
 on:
   push:
-    branches: [feature/zh-tw-localization, fix/zh-tw-complete-weather-r2, fix/zh-tw-wallpaper-strings-r3, fix/zh-tw-screensaver-aerial-terms-r4]
+    branches:
+      - feature/zh-tw-localization
+      - fix/zh-tw-complete-weather-r2
+      - fix/zh-tw-wallpaper-strings-r3
+      - fix/zh-tw-screensaver-aerial-terms-r4
+      - fix/discover-main-activities-r6
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - fix/hide-control-center-home-status-r5
   workflow_dispatch:
 
 permissions:
@@ -28,13 +35,11 @@ jobs:
           python3 - <<'PY'
           import re
           import xml.etree.ElementTree as ET
-          from pathlib import Path
           base = ET.parse('app/src/main/res/values/strings.xml').getroot()
           tw = ET.parse('app/src/main/res/values-zh-rTW/strings.xml').getroot()
           def keys(root):
               return {e.attrib['name']: e for e in root if e.tag in ('string', 'string-array', 'plurals')}
           a, b = keys(base), keys(tw)
-          # This key was intentionally removed with the control-center update notice.
           intentionally_removed = {'cc_update_available'}
           missing = sorted((set(a) - set(b)) - intentionally_removed)
           extra = sorted(set(b) - set(a))
