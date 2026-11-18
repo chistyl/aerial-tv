@@ -1,0 +1,30 @@
+name: Repair zh-TW wording
+on:
+  push:
+    branches: [fix/zh-tw-complete-weather-r2, fix/zh-tw-wallpaper-strings-r3]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/zh-tw-complete-weather-r2
+          fetch-depth: 0
+      - name: Install ICU transliterator
+        run: sudo apt-get update && sudo apt-get install -y icu-devtools
+      - name: Convert Chinese UI text to Taiwan Traditional Chinese
+        run: python3 tools/localize-zh-tw.py
+      - name: Commit converted text
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/res/values-zh-rTW/strings.xml app/src/main/assets/web/index.html app/src/main/java lite/src/main/java
+          if git diff --cached --quiet; then
+            echo "No conversion changes."
+          else
+            git commit -m "fix(i18n): convert UI text to Taiwan Traditional Chinese"
+            git push origin HEAD:fix/zh-tw-complete-weather-r2
+          fi

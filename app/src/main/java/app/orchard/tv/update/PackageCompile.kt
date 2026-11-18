@@ -15,7 +15,7 @@ import android.os.ResultReceiver
  * Android 7 to 11 let any app ask this for itself (PackageManagerService.performDexOptMode checked
  * only for instant apps; Android 12 made it system, root or shell only, so there it fails and the
  * reinstall with dex metadata does the job, SelfCompile). On those versions nothing else compiles
- * an Aerial installed from a USB stick, an app store or TCL 多屏互动: the reinstall needs a
+ * an Aerial installed from a USB stick, an app store or TCL 多屏互動: the reinstall needs a
  * confirmation page that Xiaomi's TVs do not have (MiTV-MTEQ0: STATUS_PENDING_USER_ACTION with no
  * page to show; MiTV-MFTP0: turned down within 2 s) and some firmwares refuse outright (Skyworth
  * 8R134_A7D: "found in black list"), and the system's own background dexopt waits for an idle that
