@@ -108,7 +108,6 @@ import app.orchard.tv.ui.components.consumeTaps
 import app.orchard.tv.ui.components.dismissOnTap
 import app.orchard.tv.ui.components.liquidGlass
 import app.orchard.tv.ui.home.MenuRow
-import app.orchard.tv.ui.home.VpnBadge
 import app.orchard.tv.ui.home.dateText
 import app.orchard.tv.ui.home.timeText
 import app.orchard.tv.ui.theme.Glyph
@@ -320,7 +319,6 @@ private fun MainPage(
                     style = Type.Caption, maxLines = 1, overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.widthIn(max = 110.dp),
                 )
-                if (net.vpn) VpnBadge(Palette.SecondaryLabel, fontSize = 9.sp)
             }
         }
 
