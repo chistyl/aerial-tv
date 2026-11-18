@@ -8,10 +8,12 @@ on:
       - fix/zh-tw-wallpaper-strings-r3
       - fix/zh-tw-screensaver-aerial-terms-r4
       - fix/discover-main-activities-r6
+      - fix/hide-vpn-status-r7
   pull_request:
     branches:
       - main
       - fix/hide-control-center-home-status-r5
+      - fix/discover-main-activities-r6
   workflow_dispatch:
 
 permissions:
